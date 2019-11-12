@@ -5,10 +5,9 @@ class User < ApplicationRecord
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}
   
   has_secure_password
-   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])[a-z\d]{8,32}+\z/
-   validates :password, presence: true, length: { minimum: 6, maximum: 32 } ,format: { with: VALID_PASSWORD_REGEX}         
+   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}+\z/i
+   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX}         
+
+  has_many :topics 
 end
 
-user = User.find_by(params[:email])
-if user && user.authenticate(params[:password])
-end
