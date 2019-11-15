@@ -9,5 +9,7 @@ class User < ApplicationRecord
    validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX}         
 
   has_many :topics 
+  has_many :favorites
+  has_many :favorite_topics, through: :favorites, source: 'topic'
 end
 
