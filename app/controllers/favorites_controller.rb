@@ -13,10 +13,5 @@ class FavoritesController < ApplicationController
     else
       redirect_to topics_path, danger: 'お気に入りに登録に失敗しました'
     end
-  def show
-    @post = Post.find_by(id: params[:id])
-    @user = @post.user
-    @likes_count = Like.where(post_id: @post.id).count
-  end
   end
 end
