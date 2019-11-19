@@ -18,6 +18,13 @@ class TopicsController < ApplicationController
     end
   end
 
+  def destroy
+    favorite = favorite.find(params[:id])
+  if favorites_id == current_user.id
+   favorite.destroy 
+  end
+  end
+  
   private
   def topic_params
     params.require(:topic).permit(:image, :description)
