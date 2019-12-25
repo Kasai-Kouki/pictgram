@@ -13,14 +13,24 @@
               <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
             <% end %>
           <% else %> 
+             <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
               <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon-red' %>
-            
+            <% end %> 
           <% end %>
-          <%= link_to favorites_path(topic_id: topic.id), method: :delete %>
+          
+          <%= link_to new_topic_comment_path(topic_id: topic.id), method: :get do %>
+          
             <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+          <% end %>
+            
             <p class="topic-text">
               <%= topic.description %>
             </p>
+            <% topic.comments.each do |comment| %>
+            
+          <p><%= comment.content %>
+          </p>  
+          <% end %>
           </div>
         </div>
       </div>
